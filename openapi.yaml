@@ -20,32 +20,34 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/todo"
-
+      
   "/todos/view-all":
     get:
       tags: ["View All the Todos"]
       summary: Returns all todos
       responses:
         "200":
-          description: All the posts should be returned
+          description: All the todos should be returned as an array
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/todo"
-
+                type: array
+                items:
+                  $ref: "#/components/schemas/todo"
+      
   "/todos/update/{id}":
     parameters:
-      - name: id # Must be same as the value in the {}.
-        # Location of the parameter.
-        # Can be `path`, `cookie`, `query` or `header`
-        in: path
-        description: ID of the todo
-        # Since this is in the path, the parameter HAS to be required
-        required: true
-        # Defining the type of the parameter
-        schema:
-          # In this case, it is just a string
-          type: string
+    - name: id # Must be same as the value in the {}.
+      # Location of the parameter.
+      # Can be `path`, `cookie`, `query` or `header`
+      in: path
+      description: ID of the todo
+      # Since this is in the path, the parameter HAS to be required
+      required: true
+      # Defining the type of the parameter
+      schema:
+        # In this case, it is just a string
+        type: string
     put:
       tags: ["Update a Todo with a given id"]
       summary: Update a todo
@@ -60,20 +62,20 @@ paths:
       responses:
         "200":
           description: Todo should be updated succesfully.
-
+  
   "/todos/complete/{id}":
     parameters:
-      - name: id # Must be same as the value in the {}.
-        # Location of the parameter.
-        # Can be `path`, `cookie`, `query` or `header`
-        in: path
-        description: ID of the todo
-        # Since this is in the path, the parameter HAS to be required
-        required: true
-        # Defining the type of the parameter
-        schema:
-          # In this case, it is just a string
-          type: string
+    - name: id # Must be same as the value in the {}.
+      # Location of the parameter.
+      # Can be `path`, `cookie`, `query` or `header`
+      in: path
+      description: ID of the todo
+      # Since this is in the path, the parameter HAS to be required
+      required: true
+      # Defining the type of the parameter
+      schema:
+        # In this case, it is just a string
+        type: string
     put:
       tags: ["Toggle complete Todo status with a given id"]
       summary: Toggle Complete a todo
@@ -87,28 +89,28 @@ paths:
                   description: The task completed status is only change here!
       responses:
         "200":
-          description: Todo completed staus should be updated succesfully.
-
+          description: Todo completed staus should be updated succesfully. 
+          
   "/todos/delete/{id}":
     parameters:
-      - name: id # Must be same as the value in the {}.
-        # Location of the parameter.
-        # Can be `path`, `cookie`, `query` or `header`
-        in: path
-        description: ID of the todo
-        # Since this is in the path, the parameter HAS to be required
-        required: true
-        # Defining the type of the parameter
-        schema:
-          # In this case, it is just a string
-          type: string
+    - name: id # Must be same as the value in the {}.
+      # Location of the parameter.
+      # Can be `path`, `cookie`, `query` or `header`
+      in: path
+      description: ID of the todo
+      # Since this is in the path, the parameter HAS to be required
+      required: true
+      # Defining the type of the parameter
+      schema:
+        # In this case, it is just a string
+        type: string
     delete:
       tags: ["Delete a Todo with a given id"]
       summary: Toggle Complete a todo
       responses:
         "200":
-          description: Todo should be deleted.
-
+          description: Todo should be deleted.  
+        
 components:
   schemas:
     todo:
